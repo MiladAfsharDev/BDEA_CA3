@@ -1,0 +1,26 @@
+Q1
+select * from tweets_orignal where userid = '39601084' ALLOW FILTERING
+
+Q2
+select followedaccount,followcount from followedcount where relation = 'followed'  order by followcount DESC limit 100 ALLOW FILTERING 
+
+Q3
+select followedaccount,followcount from followedcount where relation = 'follower'  order by followcount DESC limit 100 ALLOW FILTERING 
+
+Q4.1
+select followedaccount,followcount from followedcount where relation = 'followed' and followedaccount = 39601084 order by followcount DESC limit 100 ALLOW FILTERING 
+
+Q4.2
+select * from tweets_orignal   where latitude > 0 and longitude > 0  ALLOW  FILTERING
+
+Q4.3
+select * from tweets_orignal where century='Current' order by number_of_likes desc limit 25 ALLOW FILTERING
+
+Q5
+create MATERIALIZED view Tweets_Cache as 
+select * from tweets_orignal where userid = '39601084' and  century is not null and number_of_likes is not NULL
+and number_of_shares is not null and content is not null and idkey is not null  
+PRIMARY key (century,number_of_likes,number_of_shares,content,idkey,userid)
+
+Q6
+select * from tweets_orignal where century='Current' and content like '%Love%' limit 25 ALLOW FILTERING
