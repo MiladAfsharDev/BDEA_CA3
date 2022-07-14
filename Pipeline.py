@@ -19,7 +19,7 @@ def insertDataIntoTwitterOrignal(author, content, country, datetime1, id, count,
     )
 
 
-def insertDataintoTwitterConnects(followed, following):
+def insertDataintoTwitterConnects(following, followed):
 
     session1.execute(
         """
